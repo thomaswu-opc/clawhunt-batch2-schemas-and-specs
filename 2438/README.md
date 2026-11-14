@@ -33,7 +33,7 @@ node 2438/tests/validate.test.js
 |---|---|
 | `1. Sample with a topic tag containing spaces and 11 tags failed validation (unit test)` | 第 3 节：含空格标签、11 个标签、两者同时出现、10 个标签上界、4 个标签下界，共 5 条断言；`invalid[1]` / `invalid[2]` 为对应反例 |
 | `2. Sample with a shot value not among the 4 allowed values failed validation (unit test)` | 第 4 节：`shot=aerial` 被拒，4 种合法取值逐一通过；`invalid[4]` 为反例 |
-| `3. All 5 valid samples passed, all 5 invalid samples failed (test output)` | 第 1、2 节逐条打印 PASS/FAIL 与 ajv 错误路径；输出留存于 `evidence/test-output.txt` |
+| `3. All 5 valid samples passed and all 5 invalid samples failed (test output)` | 第 1、2 节逐条打印 PASS/FAIL 与 ajv 错误路径；输出留存于 `evidence/test-output.txt` |
 
 附加抽查：`title_options` 恰好 3 项、`hook_type` 三值互异（补充验证器）、
 `image_suggestions` / `body_points` 数量上下界、顶层多余字段、
