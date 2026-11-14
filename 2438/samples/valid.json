@@ -1,0 +1,103 @@
+[
+  {
+    "title_options": [
+      { "text": "午后会议室还能这样用", "hook_type": "question" },
+      { "text": "3 个提升空间利用率的做法", "hook_type": "number" },
+      { "text": "推开窗，城市天际线刚好入镜", "hook_type": "scene" }
+    ],
+    "body_points": [
+      { "lead_emoji": "✨", "text": "把闲置时段标出来，预约流程缩短一半" },
+      { "lead_emoji": "📌", "text": "共享会议室按人数推荐，不再反复确认" },
+      { "lead_emoji": null, "text": "活动结束后自动生成纪要草稿，供人工复核" }
+    ],
+    "closing_cta": "想看完整动线说明，评论区留言即可",
+    "hashtags": ["#空间体验", "#共享会议", "#会员日常", "#办公灵感", "#效率工具"],
+    "image_suggestions": [
+      { "scene": "前台与休息区全景", "shot": "wide", "note": "保留导视牌，不出现人脸" },
+      { "scene": "桌面预约二维码特写", "shot": "close-up", "note": "二维码使用虚构占位图" },
+      { "scene": "窗边座位细节", "shot": "detail", "note": "自然光，避免过曝" }
+    ]
+  },
+  {
+    "title_options": [
+      { "text": "会员活动怎么选不踩坑", "hook_type": "question" },
+      { "text": "5 分钟看懂活动报名流程", "hook_type": "number" },
+      { "text": "周五傍晚的沙龙现场", "hook_type": "scene" }
+    ],
+    "body_points": [
+      { "lead_emoji": "🎯", "text": "先按主题筛选，再看时间是否冲突" },
+      { "lead_emoji": "🗓", "text": "报名页展示剩余名额与候补状态" },
+      { "lead_emoji": null, "text": "电子票在活动前一天统一推送提醒" },
+      { "lead_emoji": "💡", "text": "未到场可回看材料，需人工审核后开放" }
+    ],
+    "closing_cta": "收藏这份清单，下次报名不慌",
+    "hashtags": ["#活动报名", "#会员沙龙", "#日程管理", "#电子票", "#社群运营", "#线下活动"],
+    "image_suggestions": [
+      { "scene": "签到台布置", "shot": "wide", "note": "桌牌用虚构企业名" },
+      { "scene": "电子票卡片", "shot": "detail", "note": "时间用占位符" },
+      { "scene": "现场座椅排列", "shot": "extreme close-up", "note": "仅拍材质细节" }
+    ],
+    "lint_issues": [
+      { "code": "TONE_CHECK", "message": "标题口语化程度偏高，供人工复核", "severity": "info" }
+    ]
+  },
+  {
+    "title_options": [
+      { "text": "资源大厅藏着哪些机会", "hook_type": "question" },
+      { "text": "4 类供需标签一次讲清", "hook_type": "number" },
+      { "text": "洽谈区的第一次握手", "hook_type": "scene" }
+    ],
+    "body_points": [
+      { "lead_emoji": "🔍", "text": "按行业与阶段组合筛选，减少无效浏览" },
+      { "lead_emoji": "🤝", "text": "意向提交后进入人工对接队列" },
+      { "lead_emoji": null, "text": "历史记录保留状态变更，便于回溯" }
+    ],
+    "closing_cta": "需要示例清单可以私信索取",
+    "hashtags": ["#资源对接", "#供需匹配", "#会员权益", "#商机流转", "#协作笔记"],
+    "image_suggestions": [
+      { "scene": "资源墙全景", "shot": "wide", "note": "卡片文字使用虚构内容" },
+      { "scene": "标签筛选器", "shot": "close-up", "note": "不展示真实企业名" },
+      { "scene": "洽谈桌牌", "shot": "detail", "note": "仅示意排版" }
+    ]
+  },
+  {
+    "title_options": [
+      { "text": "新人第一天该先做什么", "hook_type": "question" },
+      { "text": "6 个入门动作清单", "hook_type": "number" },
+      { "text": "电梯口的第一块指引牌", "hook_type": "scene" }
+    ],
+    "body_points": [
+      { "lead_emoji": "📎", "text": "完善企业资料后再开通展示位" },
+      { "lead_emoji": "🧭", "text": "按导航完成三层权限确认" },
+      { "lead_emoji": null, "text": "欢迎包内的链接均为虚构占位地址" },
+      { "lead_emoji": "✅", "text": "完成引导后由管理员人工复核" },
+      { "lead_emoji": "📮", "text": "疑问统一进入客服工单，不自动外发" }
+    ],
+    "closing_cta": "把这份入门清单转给同事吧",
+    "hashtags": ["#新会员", "#入门指南", "#权限配置", "#欢迎包", "#使用技巧", "#空间导览"],
+    "image_suggestions": [
+      { "scene": "大堂指引牌", "shot": "wide", "note": "楼层号虚构" },
+      { "scene": "欢迎包平铺", "shot": "close-up", "note": "不含真实联系方式" },
+      { "scene": "门禁卡片纹理", "shot": "detail", "note": "避免可识别编号" }
+    ]
+  },
+  {
+    "title_options": [
+      { "text": "课程回放值得看吗", "hook_type": "question" },
+      { "text": "2 种回放打开方式", "hook_type": "number" },
+      { "text": "深夜自习室的暖光", "hook_type": "scene" }
+    ],
+    "body_points": [
+      { "lead_emoji": "▶", "text": "按章节跳转，进度本地保存" },
+      { "lead_emoji": "📝", "text": "笔记草稿仅本人可见" },
+      { "lead_emoji": null, "text": "完成后进入人工复核再计入学习记录" }
+    ],
+    "closing_cta": "想看哪一门，留言告诉我们",
+    "hashtags": ["#课程回放", "#学习笔记", "#会员学院", "#碎片时间", "#自习室"],
+    "image_suggestions": [
+      { "scene": "播放器界面", "shot": "wide", "note": "标题为虚构课程名" },
+      { "scene": "章节列表", "shot": "close-up", "note": "时长用占位值" },
+      { "scene": "笔记本边缘", "shot": "extreme close-up", "note": "不出现手写姓名" }
+    ]
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "name": "clawhunt-batch2-deliverables",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ClawHunt pilot batch 2: two draft-2020-12 output schemas and a visual asset delivery specification with inspection script",
+  "scripts": {
+    "test": "node 2438/tests/validate.test.js && node 2444/tests/validate.test.js && node 1845/scripts/check_assets.js"
+  },
+  "dependencies": {
+    "ajv": "^8.20.0"
+  }
+}

@@ -1,0 +1,116 @@
+[
+  {
+    "case": "hashtag_contains_space",
+    "expect": "标签内的空格不符合 ^#[^\\s#]{1,15}$，pattern 校验失败",
+    "payload": {
+      "title_options": [
+        { "text": "午后会议室还能这样用", "hook_type": "question" },
+        { "text": "3 个提升空间利用率的做法", "hook_type": "number" },
+        { "text": "推开窗，城市天际线刚好入镜", "hook_type": "scene" }
+      ],
+      "body_points": [
+        { "lead_emoji": "✨", "text": "把闲置时段标出来" },
+        { "lead_emoji": "📌", "text": "共享会议室按人数推荐" },
+        { "lead_emoji": null, "text": "活动结束后生成纪要草稿" }
+      ],
+      "closing_cta": "想看完整动线说明请留言",
+      "hashtags": ["#会员 活动", "#共享会议", "#会员日常", "#办公灵感", "#效率工具"],
+      "image_suggestions": [
+        { "scene": "前台全景", "shot": "wide", "note": "不出现人脸" },
+        { "scene": "二维码特写", "shot": "close-up", "note": "虚构占位图" },
+        { "scene": "窗边细节", "shot": "detail", "note": "自然光" }
+      ]
+    }
+  },
+  {
+    "case": "eleven_hashtags",
+    "expect": "hashtags 共 11 项，超过 maxItems=10",
+    "payload": {
+      "title_options": [
+        { "text": "午后会议室还能这样用", "hook_type": "question" },
+        { "text": "3 个提升空间利用率的做法", "hook_type": "number" },
+        { "text": "推开窗，城市天际线刚好入镜", "hook_type": "scene" }
+      ],
+      "body_points": [
+        { "lead_emoji": "✨", "text": "把闲置时段标出来" },
+        { "lead_emoji": "📌", "text": "共享会议室按人数推荐" },
+        { "lead_emoji": null, "text": "活动结束后生成纪要草稿" }
+      ],
+      "closing_cta": "想看完整动线说明请留言",
+      "hashtags": ["#空间体验", "#共享会议", "#会员日常", "#办公灵感", "#效率工具", "#空间设计", "#会议预约", "#城市漫游", "#午后续航", "#会员权益", "#协作笔记"],
+      "image_suggestions": [
+        { "scene": "前台全景", "shot": "wide", "note": "不出现人脸" },
+        { "scene": "二维码特写", "shot": "close-up", "note": "虚构占位图" },
+        { "scene": "窗边细节", "shot": "detail", "note": "自然光" }
+      ]
+    }
+  },
+  {
+    "case": "only_two_image_suggestions",
+    "expect": "image_suggestions 仅 2 项，低于 minItems=3",
+    "payload": {
+      "title_options": [
+        { "text": "午后会议室还能这样用", "hook_type": "question" },
+        { "text": "3 个提升空间利用率的做法", "hook_type": "number" },
+        { "text": "推开窗，城市天际线刚好入镜", "hook_type": "scene" }
+      ],
+      "body_points": [
+        { "lead_emoji": "✨", "text": "把闲置时段标出来" },
+        { "lead_emoji": "📌", "text": "共享会议室按人数推荐" },
+        { "lead_emoji": null, "text": "活动结束后生成纪要草稿" }
+      ],
+      "closing_cta": "想看完整动线说明请留言",
+      "hashtags": ["#空间体验", "#共享会议", "#会员日常", "#办公灵感", "#效率工具"],
+      "image_suggestions": [
+        { "scene": "前台全景", "shot": "wide", "note": "不出现人脸" },
+        { "scene": "二维码特写", "shot": "close-up", "note": "虚构占位图" }
+      ]
+    }
+  },
+  {
+    "case": "shot_outside_allowed_four",
+    "expect": "shot = aerial 不在 wide / close-up / extreme close-up / detail 四值之内",
+    "payload": {
+      "title_options": [
+        { "text": "午后会议室还能这样用", "hook_type": "question" },
+        { "text": "3 个提升空间利用率的做法", "hook_type": "number" },
+        { "text": "推开窗，城市天际线刚好入镜", "hook_type": "scene" }
+      ],
+      "body_points": [
+        { "lead_emoji": "✨", "text": "把闲置时段标出来" },
+        { "lead_emoji": "📌", "text": "共享会议室按人数推荐" },
+        { "lead_emoji": null, "text": "活动结束后生成纪要草稿" }
+      ],
+      "closing_cta": "想看完整动线说明请留言",
+      "hashtags": ["#空间体验", "#共享会议", "#会员日常", "#办公灵感", "#效率工具"],
+      "image_suggestions": [
+        { "scene": "前台全景", "shot": "wide", "note": "不出现人脸" },
+        { "scene": "二维码特写", "shot": "aerial", "note": "非法取值" },
+        { "scene": "窗边细节", "shot": "detail", "note": "自然光" }
+      ]
+    }
+  },
+  {
+    "case": "hook_type_not_mutually_distinct",
+    "expect": "三个 title_options 的 hook_type 出现重复，补充验证器拒绝（Schema 本身无法表达跨元素唯一性）",
+    "payload": {
+      "title_options": [
+        { "text": "午后会议室还能这样用", "hook_type": "question" },
+        { "text": "3 个提升空间利用率的做法", "hook_type": "question" },
+        { "text": "推开窗，城市天际线刚好入镜", "hook_type": "scene" }
+      ],
+      "body_points": [
+        { "lead_emoji": "✨", "text": "把闲置时段标出来" },
+        { "lead_emoji": "📌", "text": "共享会议室按人数推荐" },
+        { "lead_emoji": null, "text": "活动结束后生成纪要草稿" }
+      ],
+      "closing_cta": "想看完整动线说明请留言",
+      "hashtags": ["#空间体验", "#共享会议", "#会员日常", "#办公灵感", "#效率工具"],
+      "image_suggestions": [
+        { "scene": "前台全景", "shot": "wide", "note": "不出现人脸" },
+        { "scene": "二维码特写", "shot": "close-up", "note": "虚构占位图" },
+        { "scene": "窗边细节", "shot": "detail", "note": "自然光" }
+      ]
+    }
+  }
+]

@@ -1,0 +1,94 @@
+[
+  {
+    "case": "missing_long_tier",
+    "expect": "variants 缺少 long，required 校验失败",
+    "payload": {
+      "variants": {
+        "short": "本周五沙龙开放报名，名额有限",
+        "medium": "本周五下午的会员沙龙开放报名，主题是空间运营的经验复盘。"
+      },
+      "reminders": [
+        { "day": "T-3", "suggested_time": "09:30", "text": "首次预告" },
+        { "day": "T-1", "suggested_time": "18:00", "text": "提醒查看电子票" },
+        { "day": "T-0", "suggested_time": "08:45", "text": "当日提醒" }
+      ],
+      "suggested_slots": [
+        { "channel": "Community", "day": "T-3", "time": "09:30" }
+      ]
+    }
+  },
+  {
+    "case": "duplicate_day_in_reminders",
+    "expect": "reminders 中 day=T-1 出现两次，补充验证器拒绝",
+    "payload": {
+      "variants": {
+        "short": "本周五沙龙开放报名，名额有限",
+        "medium": "本周五下午的会员沙龙开放报名，主题是空间运营的经验复盘。",
+        "long": "本周五下午的会员沙龙开放报名。这一期把过去三个月里空间运营中反复出现的问题整理成三个议题：闲置时段如何被看见、跨企业对接从哪一步开始、活动结束后的资料如何沉淀。报名后可在会员端查看电子票与候补状态；所有示例数据均为虚构，仅用于演示文案结构。"
+      },
+      "reminders": [
+        { "day": "T-3", "suggested_time": "09:30", "text": "首次预告" },
+        { "day": "T-1", "suggested_time": "18:00", "text": "提醒查看电子票" },
+        { "day": "T-1", "suggested_time": "08:45", "text": "重复的日期" }
+      ],
+      "suggested_slots": [
+        { "channel": "Community", "day": "T-3", "time": "09:30" }
+      ]
+    }
+  },
+  {
+    "case": "suggested_time_2500",
+    "expect": "suggested_time = 25:00 不符合 ^([01]\\d|2[0-3]):[0-5]\\d$",
+    "payload": {
+      "variants": {
+        "short": "本周五沙龙开放报名，名额有限",
+        "medium": "本周五下午的会员沙龙开放报名，主题是空间运营的经验复盘。",
+        "long": "本周五下午的会员沙龙开放报名。这一期把过去三个月里空间运营中反复出现的问题整理成三个议题：闲置时段如何被看见、跨企业对接从哪一步开始、活动结束后的资料如何沉淀。报名后可在会员端查看电子票与候补状态；所有示例数据均为虚构，仅用于演示文案结构。"
+      },
+      "reminders": [
+        { "day": "T-3", "suggested_time": "25:00", "text": "非法时间" },
+        { "day": "T-1", "suggested_time": "18:00", "text": "提醒查看电子票" },
+        { "day": "T-0", "suggested_time": "08:45", "text": "当日提醒" }
+      ],
+      "suggested_slots": [
+        { "channel": "Community", "day": "T-3", "time": "09:30" }
+      ]
+    }
+  },
+  {
+    "case": "short_tier_over_60",
+    "expect": "variants.short 超过 maxLength=60",
+    "payload": {
+      "variants": {
+        "short": "本周五沙龙开放报名名额有限，本次我们准备了非常丰富的内容与环节，还有茶歇与自由交流时间，现场会提供签到指引与座位表，欢迎大家尽早报名并转发给身边有需要的同事",
+        "medium": "本周五下午的会员沙龙开放报名，主题是空间运营的经验复盘。",
+        "long": "本周五下午的会员沙龙开放报名。这一期把过去三个月里空间运营中反复出现的问题整理成三个议题，现场会留出足够的自由交流时间。"
+      },
+      "reminders": [
+        { "day": "T-3", "suggested_time": "09:30", "text": "首次预告" },
+        { "day": "T-1", "suggested_time": "18:00", "text": "提醒查看电子票" },
+        { "day": "T-0", "suggested_time": "08:45", "text": "当日提醒" }
+      ],
+      "suggested_slots": [
+        { "channel": "Community", "day": "T-3", "time": "09:30" }
+      ]
+    }
+  },
+  {
+    "case": "suggested_slots_empty",
+    "expect": "suggested_slots 为空数组，低于 minItems=1",
+    "payload": {
+      "variants": {
+        "short": "本周五沙龙开放报名，名额有限",
+        "medium": "本周五下午的会员沙龙开放报名，主题是空间运营的经验复盘。",
+        "long": "本周五下午的会员沙龙开放报名。这一期把过去三个月里空间运营中反复出现的问题整理成三个议题，现场会留出足够的自由交流时间。"
+      },
+      "reminders": [
+        { "day": "T-3", "suggested_time": "09:30", "text": "首次预告" },
+        { "day": "T-1", "suggested_time": "18:00", "text": "提醒查看电子票" },
+        { "day": "T-0", "suggested_time": "08:45", "text": "当日提醒" }
+      ],
+      "suggested_slots": []
+    }
+  }
+]

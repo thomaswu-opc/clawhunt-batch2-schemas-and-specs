@@ -1,0 +1,55 @@
+=== 0. Schema 元信息与注册 ===
+PASS  方言为 draft 2020-12
+PASS  ajv.validateSchema 通过元模式校验
+PASS  注册表登记 ops.community_copy v1
+PASS  注册表声明 direct_publish=false
+PASS  注册表声明 auto_send=false
+PASS  字段说明明确禁止自动发送
+
+=== 1. 验收 4：5 份合法样例全部通过 ===
+PASS  合法样例数量为 5  |  实际 5
+PASS  valid[1] 通过
+PASS  valid[2] 通过
+PASS  valid[3] 通过
+PASS  valid[4] 通过
+PASS  valid[5] 通过
+
+=== 2. 验收 4：5 份非法样例全部被拒 ===
+PASS  非法样例数量为 5  |  实际 5
+PASS  invalid[1] 被拒绝 (missing_long_tier)  |  Schema: /variants required: must have required property 'long'
+PASS  invalid[2] 被拒绝 (duplicate_day_in_reminders)  |  补充验证器: reminders 中 day=T-1 出现两次，补充验证器拒绝
+PASS  invalid[3] 被拒绝 (suggested_time_2500)  |  Schema: /reminders/0/suggested_time pattern: must match pattern "^([01]\d|2[0-3]):[0-5]\d$"
+PASS  invalid[4] 被拒绝 (short_tier_over_60)  |  Schema: /variants/short maxLength: must NOT have more than 60 characters
+PASS  invalid[5] 被拒绝 (suggested_slots_empty)  |  Schema: /suggested_slots minItems: must NOT have fewer than 1 items
+
+=== 3. 验收 1：缺少 long 档校验失败 ===
+PASS  缺少 short → 校验失败  |  /variants required: must have required property 'short'
+PASS  缺少 medium → 校验失败  |  /variants required: must have required property 'medium'
+PASS  缺少 long → 校验失败  |  /variants required: must have required property 'long'
+PASS  三档齐全 → 通过
+
+=== 4. 验收 2：reminders 中 day 重复校验失败 ===
+PASS  day 重复 → 补充验证器拒绝
+PASS  4 个互不相同的 day → 通过
+PASS  day 不在 4 个允许值 → 校验失败
+
+=== 5. 验收 3：suggested_time = 25:00 校验失败 ===
+PASS  25:00 → 校验失败  |  /reminders/0/suggested_time pattern: must match pattern "^([01]\d|2[0-3]):[0-5]\d$"
+PASS  24:00 → 校验失败
+PASS  09:5x 越界分钟 → 校验失败
+PASS  00:00 → 通过
+PASS  23:59 → 通过
+
+=== 6. 附加边界抽查 ===
+PASS  short 超过 60 字失败
+PASS  medium 超过 150 字失败
+PASS  long 超过 300 字失败
+PASS  reminders 仅 2 项失败
+PASS  suggested_slots 为空失败
+PASS  suggested_slots 超过 4 项失败
+PASS  channel 非法取值失败
+PASS  顶层多余字段被 additionalProperties 拒绝  |  / additionalProperties: must NOT have additional properties
+PASS  可选 lint_issues 结构合法
+PASS  样例不含金额字段
+
+=== 汇总: ALL PASS ===

@@ -1,0 +1,51 @@
+=== 0. Schema 元信息与注册 ===
+PASS  方言为 draft 2020-12
+PASS  ajv.validateSchema 通过元模式校验
+PASS  注册表登记 ops.xiaohongshu_note v1
+PASS  注册表声明 direct_publish=false
+PASS  注册表声明路由至 ai_review_queue
+
+=== 1. 验收 3：5 份合法样例全部通过 ===
+PASS  合法样例数量为 5  |  实际 5
+PASS  valid[1] 通过
+PASS  valid[2] 通过
+PASS  valid[3] 通过
+PASS  valid[4] 通过
+PASS  valid[5] 通过
+
+=== 2. 验收 3：5 份非法样例全部被拒 ===
+PASS  非法样例数量为 5  |  实际 5
+PASS  invalid[1] 被拒绝 (hashtag_contains_space)  |  Schema: /hashtags/0 pattern: must match pattern "^#[^\s#]{1,15}$"
+PASS  invalid[2] 被拒绝 (eleven_hashtags)  |  Schema: /hashtags maxItems: must NOT have more than 10 items
+PASS  invalid[3] 被拒绝 (only_two_image_suggestions)  |  Schema: /image_suggestions minItems: must NOT have fewer than 3 items
+PASS  invalid[4] 被拒绝 (shot_outside_allowed_four)  |  Schema: /image_suggestions/1/shot enum: must be equal to one of the allowed values
+PASS  invalid[5] 被拒绝 (hook_type_not_mutually_distinct)  |  补充验证器: 三个 title_options 的 hook_type 出现重复，补充验证器拒绝（Schema 本身无法表达跨元素唯一性）
+
+=== 3. 验收 1：含空格话题标签与 11 个标签均校验失败 ===
+PASS  标签含空格 → 校验失败  |  /hashtags/0 pattern: must match pattern "^#[^\s#]{1,15}$"
+PASS  11 个标签 → 校验失败  |  /hashtags maxItems: must NOT have more than 10 items
+PASS  同时含空格且 11 个标签 → 校验失败
+PASS  恰好 10 个合规标签 → 通过
+PASS  仅 4 个标签 → 校验失败
+
+=== 4. 验收 2：shot 不在 4 个允许值内校验失败 ===
+PASS  shot=aerial → 校验失败  |  /image_suggestions/0/shot enum: must be equal to one of the allowed values
+PASS  shot=wide → 通过
+PASS  shot=close-up → 通过
+PASS  shot=extreme close-up → 通过
+PASS  shot=detail → 通过
+
+=== 5. 附加边界抽查 ===
+PASS  title_options 恰好 3 项（2 项失败）
+PASS  title_options 4 项失败
+PASS  三个 hook_type 重复 → 补充验证器拒绝
+PASS  image_suggestions 仅 2 项失败
+PASS  body_points 仅 2 项失败
+PASS  顶层多余字段被 additionalProperties 拒绝  |  / additionalProperties: must NOT have additional properties
+PASS  lead_emoji=null 合法
+PASS  lead_emoji 超过 2 字符失败
+PASS  closing_cta 超过 60 字符失败
+PASS  可选 lint_issues 结构合法
+PASS  样例不含金额字段
+
+=== 汇总: ALL PASS ===

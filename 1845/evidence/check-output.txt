@@ -1,0 +1,27 @@
+=== 视觉资源交付检查 · 操作日志 ===
+扫描目录 : E:\ClawHunt\batch2\1845\samples\assets
+命令     : node scripts/check_assets.js
+命名规则 : /^[a-z][a-z0-9]*-[a-z0-9-]+(@[23]x)?\.(svg|jpg|png)$/
+体积上限 : icon=4096B, illust=30720B, banner=122880B, other=122880B
+文件总数 : 7
+
+--- 逐文件判定 ---
+[NAME     ] Icon_Home.png                      size=61     B  limit=122880 B  kind=other
+[PASS     ] academy-icon-book@3x.svg           size=150    B  limit=4096   B  kind=icon
+[PASS     ] common-banner-lobby.jpg            size=61     B  limit=122880 B  kind=banner
+[PASS     ] home-icon-arrow@2x.svg             size=145    B  limit=4096   B  kind=icon
+[OVER     ] home-icon-oversize@2x.svg          size=4456   B  limit=4096   B  kind=icon
+[PASS     ] ops-illust-welcome.svg             size=131    B  limit=30720  B  kind=illust
+[NAME     ] standalone.png                     size=71     B  limit=122880 B  kind=other
+
+=== 报告 1：超出体积上限的文件 (1) ===
+  - home-icon-oversize@2x.svg  4456B > 4096B  (icon)
+
+=== 报告 2：命名不合规的文件 (2) ===
+  - Icon_Home.png  不符合 /^[a-z][a-z0-9]*-[a-z0-9-]+(@[23]x)?\.(svg|jpg|png)$/
+  - standalone.png  不符合 /^[a-z][a-z0-9]*-[a-z0-9-]+(@[23]x)?\.(svg|jpg|png)$/
+
+=== 汇总 ===
+合规 4 / 超限 1 / 命名不合规 2 / 合计 7
+说明：样例目录特意包含违规文件，用于验证检查脚本能正确报告两类问题；
+      默认退出码 0，--strict 模式下存在违规时返回 1。

@@ -1,0 +1,16 @@
+{
+  "$comment": "S5-GW 网关 Schema 注册表的本地接口桩。真实注册表由 S5-GW 工单提供，集成时把本文件内容合并进网关配置。",
+  "version": 1,
+  "environment": "local-stub",
+  "schemas": [
+    {
+      "key": "ops.community_copy",
+      "version": "v1",
+      "file": "schemas/ops/community_copy.v1.json",
+      "dialect": "https://json-schema.org/draft/2020-12/schema",
+      "route_after_validation": "ai_review_queue",
+      "direct_publish": false,
+      "auto_send": false
+    }
+  ]
+}

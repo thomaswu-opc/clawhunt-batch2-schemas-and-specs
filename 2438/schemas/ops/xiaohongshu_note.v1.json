@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/ops/xiaohongshu_note.v1.json",
+  "title": "Xiaohongshu Note Output Schema v1",
+  "$comment": "S5-OPS-019. title_options 恰好 3 项；三个 hook_type 值互不相同由补充验证器 tests/validate.test.js 强制（JSON Schema 本身不表达该项跨元素唯一性）。校验通过的内容只进入 ai_review_queue，不得直接对外发布；AI 不计算任何金额；所有样例为虚构数据。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["title_options", "body_points", "closing_cta", "hashtags", "image_suggestions"],
+  "properties": {
+    "title_options": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["text", "hook_type"],
+        "properties": {
+          "text": { "type": "string", "minLength": 1, "maxLength": 20 },
+          "hook_type": { "type": "string", "enum": ["question", "number", "scene"] }
+        }
+      }
+    },
+    "body_points": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["lead_emoji", "text"],
+        "properties": {
+          "lead_emoji": { "type": ["string", "null"], "maxLength": 2 },
+          "text": { "type": "string", "minLength": 1, "maxLength": 200 }
+        }
+      }
+    },
+    "closing_cta": { "type": "string", "maxLength": 60 },
+    "hashtags": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 10,
+      "items": { "type": "string", "pattern": "^#[^\\s#]{1,15}$" }
+    },
+    "image_suggestions": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["scene", "shot", "note"],
+        "properties": {
+          "scene": { "type": "string", "maxLength": 60 },
+          "shot": { "type": "string", "enum": ["wide", "close-up", "extreme close-up", "detail"] },
+          "note": { "type": "string", "maxLength": 60 }
+        }
+      }
+    },
+    "lint_issues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["code", "message"],
+        "properties": {
+          "code": { "type": "string", "minLength": 1 },
+          "message": { "type": "string", "minLength": 1 },
+          "severity": { "type": "string", "enum": ["info", "warn", "error"] }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schemas/ops/community_copy.v1.json",
+  "title": "Community Moments Copy Output Schema v1",
+  "$comment": "S5-OPS-021. variants 的 short/medium/long 三档全部必填；reminders 内 day 不重复由补充验证器 tests/validate.test.js 强制（uniqueItems 对对象整体去重无法表达该语义）。suggested_time 与 suggested_slots 仅供员工参考，任何模块不得用其触发自动发送。校验通过的内容只进入 ai_review_queue，不得直接对外发布；AI 不计算任何金额；所有样例为虚构数据。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["variants", "reminders", "suggested_slots"],
+  "properties": {
+    "variants": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["short", "medium", "long"],
+      "properties": {
+        "short": { "type": "string", "minLength": 1, "maxLength": 60 },
+        "medium": { "type": "string", "minLength": 1, "maxLength": 150 },
+        "long": { "type": "string", "minLength": 1, "maxLength": 300 }
+      }
+    },
+    "reminders": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["day", "suggested_time", "text"],
+        "properties": {
+          "day": { "type": "string", "enum": ["T-3", "T-1", "T-0", "T+1"] },
+          "suggested_time": { "type": "string", "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$" },
+          "text": { "type": "string", "minLength": 1, "maxLength": 80 }
+        }
+      }
+    },
+    "suggested_slots": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["channel", "day", "time"],
+        "properties": {
+          "channel": { "type": "string", "enum": ["Community", "Moments"] },
+          "day": { "type": "string", "minLength": 1 },
+          "time": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "lint_issues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["code", "message"],
+        "properties": {
+          "code": { "type": "string", "minLength": 1 },
+          "message": { "type": "string", "minLength": 1 },
+          "severity": { "type": "string", "enum": ["info", "warn", "error"] }
+        }
+      }
+    }
+  }
+}
